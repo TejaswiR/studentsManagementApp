@@ -10,7 +10,8 @@
           </a>
         </div>
         <div id="klasses-list" class="list-group" ng-repeat="klass in main.klassResp.klasses">
-            <a id="klass_{{klass.id}}" class="list-group-item klass-item" ng-click="main.showSections(klass.id)" >{{klass.name}}</a>
+            <a id="klass_{{klass.id}}" class="list-group-item klass-item" ng-click="main.showSections(klass.id)" >{{klass.name}}
+                <span class="label label-success pull-right">{{klass.section_ids.length}}</span></a>
          </div>
     </div>
   </div>
@@ -23,12 +24,74 @@
           </a>
         </div>
         <div id="sections-list" class="list-group" ng-repeat="section in main.sectionResp.sections">
-            <a id="section_1" class="list-group-item section-item" ng-click="" >{{section.name}}</a>
+            <a id="section_{{section.id}}" class="list-group-item section-item" ng-click="main.showStudents(section.id)" >{{section.name}}
+            <span class="label label-info pull-right">{{section.student_ids.length}}</span>
+            </a>
          </div>
     </div>
   </div>
-  <div id="students" class="col-md-4"></div>
-  <div id="student-details" class="col-md-4"></div>
+  <div id="students" class="col-md-4">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+          <b>Students</b>
+          <a type="button" href="#" class="pull-right" data-toggle="modal" data-target="#new_klass">
+            <i class="fa fa-plus-square"></i>
+          </a>
+        </div>
+        <div id="students-list" class="list-group" ng-repeat="student in main.studentResp.students">
+            <a id="section_{{student.id}}" class="list-group-item student-item" ng-click="main.showStudentDetails(student.id)" >{{student.name}}
+            </a>
+         </div>
+    </div>  
+
+
+  </div>
+  <div id="student-details" class="col-md-4" ng-show="main.studentDetailResp">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <b>Student Details</b>
+          <a type="button" href="#" class="pull-right" data-toggle="modal" data-target="#new_klass">
+            <i class="fa fa-pencil-square-o"></i>
+          </a>
+        </div>
+        <div class="panel-body">
+              <dl class="dl-horizontal">
+              <dt>Roll number</dt>
+              <dd>
+                  {{main.studentDetailResp.student.roll_number}}
+              </dd>
+              <dt>Name</dt>
+              <dd>
+                  {{main.studentDetailResp.student.name}}
+              </dd>
+              <dt>Fathers name</dt>
+              <dd>
+                  {{main.studentDetailResp.student.fathers_name}}
+              </dd>
+              <dt>Email</dt>
+              <dd>
+                  {{main.studentDetailResp.student.email}}
+              </dd>
+              <dt>Gender</dt>
+              <dd>
+                  {{main.studentDetailResp.student.gender}}
+              </dd>
+              <dt>Dob</dt>
+              <dd>
+                 {{main.studentDetailResp.student.dob}}
+              </dd>
+              <dt>Phone</dt>
+              <dd>
+                  {{main.studentDetailResp.student.phone}}
+              </dd>
+              <dt>Address</dt>
+              <dd>
+                  {{main.studentDetailResp.student.address}}
+              </dd>
+            </dl>
+        </div>
+    </div>    
+  </div>
 </div>
   
 </div>
