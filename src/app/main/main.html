@@ -10,16 +10,14 @@
           </a>
         </div>
         <div id="klasses-list" class="list-group" ng-repeat="klass in main.klassResp.klasses">
-        <div class="row">
-        <div class="col-md-8">
-              <a id="klass_{{klass.id}}" class="list-group-item klass-item" ng-click="main.showSections(klass.id)" >{{klass.name}}</a>
-              </div>
-              <div class="col-md-4">
-                  <a href="" ng-click="main.deleteKlass(klass)"><i class="fa fa-trash"></i></a>
-                  
-       <!--            <span class="label label-success">{{klass.section_ids.length}}</span> -->
-              </div>
-          </div>        
+        <div class="list-group-item">
+              <a id="klass_{{klass.id}}" type="button" class="klass-item" ng-click="main.showSections(klass.id)" >
+              {{klass.name}}
+              <span class="label label-info">{{klass.section_ids.length}}</span>
+              </a>
+                  <a href="" ng-click="main.deleteKlass(klass)" class="pull-right"><i class="fa fa-trash"></i></a>
+
+         </div>         
          </div>
     </div>
   </div>
