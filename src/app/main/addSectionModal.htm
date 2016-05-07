@@ -1,0 +1,22 @@
+<div class="modal fade" role="dialog" tabindex="-1" id="new_section">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add a new Section</h4>
+      </div>
+      <div class="modal-body">
+        <form id="new-klass-form" novalidate="novalidate" ng-submit="main.addSection()" accept-charset="UTF-8">
+          <div class="form-group string required klass_name">
+            <label class="string required control-label" for="klass_name">
+            <abbr title="required">*</abbr> 
+            Name
+            </label>
+            <input class="string required form-control" type="text" ng-model=main.newSectionName id="klass_name">
+          </div>
+          <input type="submit" name="commit" value="Add Section" class="btn btn-primary">
+        </form>
+      </div>
+    </div>
+  </div>
+</div><!-- /.modal -->

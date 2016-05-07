@@ -5,13 +5,21 @@
     <div class="panel panel-info">
         <div class="panel-heading">
           <b>Classes</b>
-          <a type="button" href="#" class="pull-right" data-toggle="modal" data-target="#new_klass">
+          <a type="button" class="pull-right" data-toggle="modal" data-target="#new_klass">
             <i class="fa fa-plus-square"></i>
           </a>
         </div>
         <div id="klasses-list" class="list-group" ng-repeat="klass in main.klassResp.klasses">
-            <a id="klass_{{klass.id}}" class="list-group-item klass-item" ng-click="main.showSections(klass.id)" >{{klass.name}}
-                <span class="label label-success pull-right">{{klass.section_ids.length}}</span></a>
+        <div class="row">
+        <div class="col-md-8">
+              <a id="klass_{{klass.id}}" class="list-group-item klass-item" ng-click="main.showSections(klass.id)" >{{klass.name}}</a>
+              </div>
+              <div class="col-md-4">
+                  <a href="" ng-click="main.deleteKlass(klass)"><i class="fa fa-trash"></i></a>
+                  
+       <!--            <span class="label label-success">{{klass.section_ids.length}}</span> -->
+              </div>
+          </div>        
          </div>
     </div>
   </div>
@@ -19,7 +27,7 @@
     <div class="panel panel-info">
         <div class="panel-heading">
           <b>Sections</b>
-          <a type="button" href="#" class="pull-right" data-toggle="modal" data-target="#new_klass">
+          <a type="button" href="#" class="pull-right" data-toggle="modal" data-target="#new_section">
             <i class="fa fa-plus-square"></i>
           </a>
         </div>
@@ -50,7 +58,7 @@
       <div class="panel panel-info">
         <div class="panel-heading">
           <b>Student Details</b>
-          <a type="button" href="#" class="pull-right" data-toggle="modal" data-target="#new_klass">
+          <a type="button" class="pull-right" data-toggle="modal" data-target="#new_klass">
             <i class="fa fa-pencil-square-o"></i>
           </a>
         </div>
@@ -95,3 +103,10 @@
 </div>
   
 </div>
+
+
+<div ng-include src="'app/main/addKlassModal.htm'"></div>
+
+<div ng-include src="'app/main/addSectionModal.htm'"></div>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>

@@ -11,12 +11,16 @@
 
     function init(){
       vm.klassList = [];
+      loadAllKlasses();
+      
+    }
+   
+    function loadAllKlasses(){
       var resourceObj = $resource('http://pure-retreat-73401.herokuapp.com/api/v1/klasses.json',{
         access_token:'TLVMLZCHEBSBAVTQJDV5LVTB7E8S74Q4'
       });
       vm.klassResp = resourceObj.get();
     }
-   
      vm.showSections = function(klassId){
       vm.sectionResp=null;
       vm.studentResp=null;
@@ -47,12 +51,49 @@
       console.log(vm.studentDetailResp);
      }
 
-     function resetAll(){
-      // vm.klassResp={};
-      vm.sectionResp=null;
-      vm.studentResp=null;
-      vm.studentDetailResp=null;
+     vm.addKlass = function(){
+      console.log("Add Klass called");
+      var resourceObj = $resource('http://pure-retreat-73401.herokuapp.com/api/v1/klasses.json',{
+        access_token:'TLVMLZCHEBSBAVTQJDV5LVTB7E8S74Q4'
+      });
+      var resp = resourceObj.save({name:vm.newKlassName});
+      resp.$promise.then(function(resData){
+        console.log('Klass added');
+        console.log(resData);
+        vm.klassResp = resourceObj.get();
+      },function(){
+        console.log('Unable to add Class');
+      })
      }
+
+     vm.deleteKlass = function(klassObj){
+      var resourceObj = $resource('http://pure-retreat-73401.herokuapp.com/api/v1/klasses/'+klassObj.id,{
+        access_token:'TLVMLZCHEBSBAVTQJDV5LVTB7E8S74Q4'
+      });
+      var resp = resourceObj.delete({name:klassObj.name});
+      resp.$promise.then(function(resData){
+        console.log('Klass deleted');
+        console.log(resData);
+        loadAllKlasses();
+      },function(){
+        console.log('Unable to delete Class');
+      })
+     }
+
+     vm.addSection = function(){
+      var resourceObj = $resource('http://pure-retreat-73401.herokuapp.com/api/v1/klasses/'+vm.currentClassId+'/sections.json',{
+        access_token:'TLVMLZCHEBSBAVTQJDV5LVTB7E8S74Q4'
+      });
+      var resp = resourceObj.save({name:vm.newSectionName});
+      resp.$promise.then(function(resData){
+            console.log('Section added');
+            console.log(resData);
+            vm.sectionResp = resourceObj.get();
+          },function(){
+            console.log('Unable to add Section');
+          });   
+     }
+
 
     init();
   }
