@@ -94,6 +94,10 @@
           });   
      }
 
+     vm.addStudent = function(){
+      var resourceObj = $resource()
+     }
+
 
     init();
   }
